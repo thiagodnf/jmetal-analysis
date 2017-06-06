@@ -64,5 +64,44 @@ public class ConvertUtils {
 
 		return listOfSolutions;
 	}
+	
+	/**
+	 * Convert a list of solutions formatted in string to a list of {@link DumbSolution}. To use
+	 * this you need to format each solution like (1,2) and separate it by ";". Example:
+	 * <pre>
+	 * {@code DumbProblem problem = new DumbProblem(2, 1);}
+	 * {@code List<DumbSolution> list = ConvertUtils.toListOfSolutions(problem,"(1,2);(4,5)"); }
+	 * <pre>
+	 * 
+	 * @param problem The problem used to generate a {@link DumbSolution} 
+	 * @param string formatted-string solutions 
+	 * @return a list of {@link DumbSolution}
+	 */
+	public static List<DumbSolution> toListOfSolutions(DumbProblem problem, String string) {
+
+		checkNotNull(problem, "The problem cannot be null");
+		checkNotNull(string, "The formatted-string solution cannot be null");
+		
+		List<DumbSolution> listOfDumbSolutions = new ArrayList<>();
+
+		String[] split = string.split(";");
+
+		for (String s : split) {
+
+			DumbSolution solution = new DumbSolution(problem);
+
+			String[] objectives = s.replace("(", "").replace(")", "").split(",");
+
+			for (int i = 0; i < objectives.length; i++) {
+				solution.setObjective(i, Double.valueOf(objectives[i]));
+			}
+
+			solution.setVariableValue(0, "00000");
+
+			listOfDumbSolutions.add(solution);
+		}
+
+		return listOfDumbSolutions;
+	}
 
 }
