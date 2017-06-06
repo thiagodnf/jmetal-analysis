@@ -1,0 +1,133 @@
+body{
+    padding-top: 50px;
+    overflow-y:scroll;
+}
+
+.page-title{
+	margin-bottom: 20px;
+}
+
+input[type=checkbox]{
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(1.2); 		/* IE */
+	-moz-transform: scale(1.2); 	/* FF */
+	-webkit-transform: scale(1.2); 	/* Safari and Chrome */
+	-o-transform: scale(1.2); 		/* Opera */
+	padding: 10px; 
+}
+
+input[type=checkbox]:hover{
+	cursor: pointer;
+}
+
+table > thead:hover{
+	cursor: pointer;
+}
+
+
+
+
+
+.navbar-nav a {
+	color: #ddd !important;
+}
+
+.navbar-nav a:hover{
+	color:  #fff !important;
+}
+
+.dropdown-menu a{
+	color: black !important;
+}
+
+.dropdown-menu a:hover{
+	color: black !important;
+}
+
+
+
+
+.dialog-visible-columns label{
+	padding-left: 25px;
+}
+
+
+
+
+
+.navbar-toolbar{
+    margin-top: 20px;
+}
+
+.navbar-toolbar .container-fluid{
+    margin-left: -38px !important;
+    margin-right: -20px !important;
+}
+
+.navbar-color-black {
+    background-color: #222222;
+    border-color: #000000;
+}
+.navbar-color-black .navbar-brand {
+    color: #00d8ff;
+}
+.navbar-color-black .navbar-brand:hover, .navbar-color-black .navbar-brand:focus {
+    color: #ecdbff;
+}
+.navbar-color-black .navbar-text {
+    color: #00d8ff;
+}
+.navbar-color-black .navbar-nav > li > a {
+    color: #00d8ff;
+}
+.navbar-color-black .navbar-nav > li > a:hover, .navbar-color-black .navbar-nav > li > a:focus {
+    color: #ecdbff;
+}
+.navbar-color-black .navbar-nav > .active > a,
+.navbar-color-black .navbar-nav > .active > a:hover,
+.navbar-color-black .navbar-nav > .active > a:focus {
+    color: #ecdbff;
+    background-color: #000000;
+}
+.navbar-color-black .navbar-nav > .open > a,
+.navbar-color-black .navbar-nav > .open > a:hover,
+.navbar-color-black .navbar-nav > .open > a:focus {
+    color: #ecdbff;
+    background-color: #000000;
+}
+.navbar-color-black .navbar-toggle {
+    border-color: #000000;
+}
+.navbar-color-black .navbar-toggle:hover,
+.navbar-color-black .navbar-toggle:focus {
+    background-color: #000000;
+}
+.navbar-color-black .navbar-toggle .icon-bar {
+    background-color: #00d8ff;
+}
+.navbar-color-black .navbar-collapse,
+.navbar-color-black .navbar-form {
+    border-color: #00d8ff;
+}
+.navbar-color-black .navbar-link {
+    color: #00d8ff;
+}
+.navbar-color-black .navbar-link:hover {
+    color: #ecdbff;
+}
+
+@media (max-width: 767px) {
+  .navbar-color-black .navbar-nav .open .dropdown-menu > li > a {
+    color: #00d8ff;
+  }
+  .navbar-color-black .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-color-black .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ecdbff;
+  }
+  .navbar-color-black .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-color-black .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-color-black .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ecdbff;
+    background-color: #000000;
+  }
+}

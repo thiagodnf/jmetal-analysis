@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:include="fragments/header"></div>
+    <body>
+    	<div th:include="fragments/navbars/navbar-home"></div>
+     	
+     	<div class="container">
+		
+     		<h2 class="page-title">Projects</h2>
+       	
+       		<table class="table table-striped table-bordered" cellspacing="0" width="100%" >
+			    <thead>
+			        <tr>
+			        	<th style="width: 30px">#</th>
+			        	<th style="width: 170px">ID</th>
+			            <th>Name</th>
+			            <th style="width: 10px"></th>			            
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr th:each="project,iterStat : ${listOfProjects}">
+			        	<td th:text="${iterStat.count}"/>
+			        	<td th:text="${project.id}"/>
+		                <td><a th:href="@{/project/}+${project.id}" th:text="${project.name}"></a></td>
+		                <td>
+		                	<!-- Single button -->
+							<div class="btn-group">
+							  <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu dropdown-menu-right">
+							    <li><a href="#" th:attr="data-id=${project.id}" class="btn-project-edit">Edit</a></li>
+							    <li role="separator" class="divider"></li>
+							    <li><a href="#" th:attr="data-id=${project.id},data-name=${project.name}" class="btn-project-remove">Remove</a></li>
+							  </ul>
+							</div>
+		                </td>
+			        </tr>
+			    </tbody>
+			</table>
+    	</div>
+    	
+    	<div th:include="fragments/dialogs/form_project"></div>
+    	<div th:include="fragments/footer"></div>
+   	</body>
+</html>
+    

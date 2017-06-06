@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<div th:include="fragments/header"></div>
+    <body>
+    	<div th:include="fragments/navbars/navbar-project"></div>
+     	
+     	<div class="container">
+		
+     		<h2 class="page-title"><span th:text="${project.name}"/></h2>
+       	
+	       	<div class="table-responsives">
+				<table class="table table-striped table-bordered" cellspacing="0" width="100%" >
+				    <thead>
+				        <tr>
+				        	<th style="width: 30px">#</th>
+				        	<th style="width: 5px"><input type="checkbox" class="table-checkbox-all"/></th>
+				            <th>Name</th>	
+				            <th># of Solutions</th>
+				            <th>Creation Time</th>	
+				            <th>Execution Time</th>
+				            <th>Hypervolume</th>
+				            <th style="display: none;">Epsilon</th>
+				            <th style="display: none;">IGD</th>
+				            <th style="display: none;">IGD+</th>  
+				            <th style="display: none;">GD</th>
+				            <th style="display: none;">Spread</th>           
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <tr th:each="solutionSet,iterStat : ${listOfSolutionSet}">
+				       	 	<td th:text="${iterStat.count}"/>
+				        	<td><input type="checkbox" th:attr="data-id=${solutionSet.id}" class="table-checkbox"/></td>
+				        	<td><a th:href="@{/solution-set/}+${solutionSet.id}" th:text="${solutionSet.getName()}"></a></td>
+			                <td th:text="${solutionSet.getSolutions().size()}"/>
+			                <td th:text="${solutionSet.getCreationTime()}"/>
+			                <td th:text="${solutionSet.getIndicators().get('executionTime')}"/>
+			                <td th:text="${solutionSet.getIndicators().get('n_hypervolume')}"/>
+			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_epsilon')}"/>
+			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_igd')}"/>
+			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_igd_plus')}"/>
+			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_gd')}"/>
+			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_spread')}"/>
+				        </tr>
+				    </tbody>
+				</table>
+	    	</div>
+    	</div>
+    	
+    	<!-- Modal -->
+		<div class="modal fade" id="modal-draw-chart" tabindex="-1" role="dialog" aria-labelledby="modal-draw-chart-title">
+		    <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		                <h4 class="modal-title" id="modal-draw-chart-title">Chart</h4>
+		            </div>
+		            <div class="modal-body">
+		                <div id="draw-chart-container">Loading...</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" id="btn-cancel" data-dismiss="modal">Close</button>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+    	
+    	<div th:include="fragments/footer"></div>
+   	</body>
+</html>
+    
