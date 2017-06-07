@@ -15,6 +15,7 @@ local.properties
 .recommenders
 
 src/main/resources/application.properties
+application.properties
 
 # Eclipse Core
 .project
