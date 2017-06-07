@@ -12,6 +12,7 @@
 			    <thead>
 			        <tr>
 			        	<th style="width: 30px">#</th>
+			        	<th style="width: 5px"><input type="checkbox" class="table-checkbox-all"/></th>
 			        	<th style="width: 170px">ID</th>
 			            <th>Name</th>
 			            <th style="width: 10px"></th>			            
@@ -20,6 +21,7 @@
 			    <tbody>
 			        <tr th:each="project,iterStat : ${listOfProjects}">
 			        	<td th:text="${iterStat.count}"/>
+			        	<td><input type="checkbox" th:attr="data-id=${project.id}" class="table-checkbox"/></td>
 			        	<td th:text="${project.id}"/>
 		                <td><a th:href="@{/project/}+${project.id}" th:text="${project.name}"></a></td>
 		                <td>

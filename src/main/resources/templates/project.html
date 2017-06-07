@@ -23,7 +23,8 @@
 				            <th style="display: none;">IGD</th>
 				            <th style="display: none;">IGD+</th>  
 				            <th style="display: none;">GD</th>
-				            <th style="display: none;">Spread</th>           
+				            <th style="display: none;">Spread</th> 
+			             	<th style="width: 10px"></th>          
 				        </tr>
 				    </thead>
 				    <tbody>
@@ -40,6 +41,17 @@
 			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_igd_plus')}"/>
 			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_gd')}"/>
 			                <td style="display: none;" th:text="${solutionSet.getIndicators().get('n_spread')}"/>
+			                <td>
+			                	<!-- Single button -->
+								<div class="btn-group">
+								  <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								    <span class="caret"></span>
+								  </button>
+								  <ul class="dropdown-menu dropdown-menu-right">
+								    <li><a href="#" th:attr="data-id=${solutionSet.id},data-name=${solutionSet.name}" class="btn-solution-set-remove">Remove</a></li>
+								  </ul>
+								</div>
+			                </td>
 				        </tr>
 				    </tbody>
 				</table>

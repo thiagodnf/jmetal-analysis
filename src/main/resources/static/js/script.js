@@ -85,6 +85,22 @@ $(function(){
     	
     	return false;
     });
+    
+    $('#btn-project-edit').click(function() {
+    	var ids = $(".table").getSelectedRows();
+    	
+    	if(ids.length != 1){
+    		return MessageBox.warning("You have to select just a row");
+    	}
+
+    	PostRequest.send('/project/get', ids, function(project){
+    		$("#form-project input[name='id']").val(project[0].id);
+            $("#form-project input[name='name']").val(project[0].name);
+            $("#modal-form-project").modal("show");
+    	});
+    	
+    	return false;
+    });
         
     $('.btn-project-remove').click(function() {
     	
@@ -93,6 +109,21 @@ $(function(){
     	
     	MessageBox.confirm("Are you sure you want to delete the project '"+name+"'?", function(){
     		PostRequest.send('/project/remove', [id]);
+    	});
+ 	
+    	return false;
+    });
+    
+    $('#btn-project-remove').click(function() {
+    	
+    	var ids = $(".table").getSelectedRows();
+
+    	if(ids.length == 0){
+    		return MessageBox.warning("You have to select at least a row");
+    	}
+    	
+    	MessageBox.confirm("Are you sure you want to delete this project?", function(){
+    		PostRequest.send('/project/remove', ids);
     	});
  	
     	return false;
@@ -168,6 +199,66 @@ $(function(){
     	});
  	
     	return false;
+    });
+    
+    $('.btn-solution-set-remove').click(function() {
+    
+    	var id = $(this).data("id");
+    	var name = $(this).data("name");
+    	
+    	MessageBox.confirm("Are you sure you want to delete the solution set '"+name+"'?", function(){
+    		PostRequest.send('/solution-set/remove', [id]);
+    	});
+ 	
+    	return false;
+    });
+    
+    $('#btn-solution-set-details').click(function() {
+    	
+    	var id = $(this).data("id");
+    	
+    	$.confirm({
+	        title: false,
+	        content: '' +
+	        '<div class="dialog-solution-set-details">' +
+	        '<h3>General Information</h3>' +
+	        '<p><strong># of Solutions: </strong><span id="qi-n-of-solutions"></span></p>' +
+	        '<p><strong>Creation Time: </strong><span id="qi-creation-time"></span></p>' +
+	        '<p><strong>Execution Time: </strong><span id="qi-execution-time"></span></p>' +
+	        '<h3>Quality Indicators</h3>' +
+	        '<p><strong>Hypervolume: </strong><span id="qi-hypervolume"></span></p>' +
+	        '<p><strong>Epsilon: </strong><span id="qi-epsilon"></span></p>' +
+	        '<p><strong>IGD: </strong><span id="qi-igd"></span></p>' +
+	        '<p><strong>IGD+: </strong><span id="qi-igd-plus"></span></p>' +
+	        '<p><strong>GD: </strong><span id="qi-gd"></span></p>' +
+	        '<p><strong>Spread: </strong><span id="qi-spread"></span></p>' +
+	        '</div>',
+	        buttons: {
+	            formSubmit: {
+	                text: 'OK',
+	                btnClass: 'btn-blue',
+	                action: showOrHideColumns
+	            }
+	        },
+	        onContentReady: function () {
+	            // bind to events
+	            var jc = this;
+	            
+	            PostRequest.send('/solution-set/get', [id], function(solutionSet){
+	            	jc.$content.find('#qi-n-of-solutions').html(solutionSet[0].solutions.length);
+	            	jc.$content.find('#qi-creation-time').html(solutionSet[0].creationTime);
+	            	jc.$content.find('#qi-execution-time').html(solutionSet[0].indicators.executionTime);
+	            	jc.$content.find('#qi-hypervolume').html(solutionSet[0].indicators.n_hypervolume);
+	            	jc.$content.find('#qi-epsilon').html(solutionSet[0].indicators.n_epsilon);
+	            	jc.$content.find('#qi-igd').html(solutionSet[0].indicators.n_igd);
+	            	jc.$content.find('#qi-igd-plus').html(solutionSet[0].indicators.n_igd_plus);
+	            	jc.$content.find('#qi-gd').html(solutionSet[0].indicators.n_gd);
+	            	jc.$content.find('#qi-spread').html(solutionSet[0].indicators.n_spread);
+	        	});
+	        }
+	    });
+	
+    	return false;    	
     });
     
     var $rows = $('.table tbody tr');

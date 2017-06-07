@@ -4,13 +4,13 @@
 		var that = this;
 		
 		// The user has the possibility to sort the columns
-//		this.tablesorter({
-//	    	// It should not sort the first column
-//			 headers: {
-//				 0: { sorter: false, parser: false },
-//			 }
-//	    });
-		this.tablesorter();
+		this.tablesorter({
+	    	// It should not sort the first column
+			 headers: {
+				 1: { sorter: false, parser: false },
+			 }
+	    });
+//		this.tablesorter();
 		
 		// Change the color of the row when a checkbox is selected
 		this.find('.table-checkbox').change(function(event, param) {
